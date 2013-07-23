@@ -47,7 +47,8 @@ module Kitchen
         state[:hostname] = get_ip(server)
         # As a consequence of IP weirdness, the OpenStack setup() method is
         # also borked
-        wait_for_sshd(state[:hostname]) ; puts '(ssh ready)'
+        wait_for_sshd(state[:hostname], config[:username])
+        puts '(ssh ready)'
         unless config[:ssh_key] or config[:key_name]
           do_ssh_setup(state, config, server)
         end
